@@ -56,7 +56,30 @@ A key insight from this lab is the distinction between detection and response. W
 Future improvements could include expanding the lab to additional attack types, integrating more advanced response actions, and incorporating visualization or reporting features.
 
 ## Screenshots
-(Add your screenshots here if required by the assignment)
+
+### Lab Architecture and Network Setup
+![Lab setup](lab-setup.png)
+
+This diagram illustrates the three-machine lab environment, including the Wazuh Manager, Wazuh Agent (Ubuntu client), and Kali attacker machine connected through a VirtualBox host-only network.
+
+---
+
+### SSH Brute-Force Log Activity (Client Side)
+![Client logs](client-logs.png)
+
+This view shows SSH authentication failures recorded on the Ubuntu client. These logs are collected by the Wazuh agent and forwarded to the manager for analysis.
+
+---
+
+### Detection and Active Response (Wazuh Dashboard)
+![Wazuh detection](wazuh-detection.png)
+
+The Wazuh dashboard displays detected brute-force activity, including failed login attempts and active response events. After configuration adjustments, the attacking IP is successfully blocked.
+
+---
+
+### Full Environment in Operation
+![Full environment](full-environment.png)
 
 ## Author
 Cybersecurity Graduate Student  
