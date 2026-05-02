@@ -1,60 +1,62 @@
 # Wazuh SSH Brute-Force Detection Lab
 
-## Overview
-This project demonstrates the effectiveness of Wazuh, an open-source security monitoring platform, in detecting and responding to a simulated SSH brute-force attack. The lab follows an incident response approach and highlights both detection capabilities and practical implementation challenges.
+## Project Overview
+This project demonstrates the effectiveness of Wazuh, an open-source security monitoring platform, in detecting and responding to a simulated SSH brute-force attack. The lab follows an incident response approach and highlights both detection capabilities and practical implementation challenges in a controlled environment.
 
-## Objectives
-- Simulate an SSH brute-force attack using Hydra
-- Monitor authentication logs on a Linux system
-- Detect suspicious activity using Wazuh
-- Evaluate automated response mechanisms
-- Identify configuration limitations and required adjustments
+## Project Relevance
+Wazuh is widely used in Incident Response for log analysis, intrusion detection, and endpoint monitoring. It enables security teams to detect suspicious behavior, investigate events, and respond to threats in real time.
 
-## Lab Environment
-- Kali Linux (Attacker)
-- Ubuntu Server (Target with SSH enabled)
+This project demonstrates how Wazuh can identify brute-force attacks and emphasizes the importance of proper configuration for automated response. Wazuh was selected due to its open-source accessibility and relevance to real-world security operations. This work provides hands-on experience with detection, monitoring, and response workflows commonly used in cybersecurity environments.
+
+## Methodology
+
+### Setup and Environment
+- Kali Linux (Attacker machine)
+- Ubuntu Server (Target system with SSH enabled)
 - Wazuh Manager (Detection and analysis)
 - Wazuh Agent (Installed on monitored endpoint)
 - VirtualBox Host-Only Network (isolated lab environment)
 
-> Note: A three-machine setup was required. Wazuh Manager and Agent were deployed on separate systems due to installation and operational constraints.
+A three-machine architecture was used. The Wazuh Manager and Agent were deployed on separate systems due to installation and operational constraints.
 
-## Attack Simulation
-The attacker system (Kali Linux) used Hydra to perform a brute-force attack against the SSH service (port 22) on the Ubuntu target. Multiple login attempts were generated using a password wordlist.
+### Tools and Frameworks
+- Wazuh (SIEM / HIDS platform)
+- Hydra (brute-force attack tool)
+- Linux system logs (authentication logs)
 
-## Detection and Monitoring
-Wazuh is preconfigured with rules designed to detect suspicious authentication behavior, including repeated failed login attempts.
+### Architecture / Workflow
+1. Kali Linux initiates a brute-force attack against the Ubuntu SSH service (port 22)
+2. Ubuntu logs authentication attempts in real time
+3. Wazuh Agent collects logs and forwards them to the Wazuh Manager
+4. Wazuh analyzes logs using built-in detection rules
+5. Alerts are generated based on suspicious login patterns
 
-- The Ubuntu system logged SSH authentication attempts
-- The Wazuh agent collected and forwarded logs to the manager
-- The Wazuh manager analyzed the logs using built-in detection rules
-- Alerts were successfully generated for brute-force activity
+### Step-by-Step Process
+- Verified connectivity between attacker and target systems
+- Executed Hydra brute-force attack against SSH service
+- Monitored authentication logs on Ubuntu system
+- Observed Wazuh alert generation in dashboard
+- Identified that active response (IP blocking) did not trigger initially
+- Modified configuration to enable active response
+- Confirmed successful blocking of attacker IP after adjustment
 
-## Response and Configuration Challenge
-Although Wazuh successfully detected the attack, the automated response (blocking the attacker IP) did not initially trigger.
+## Results
+- Wazuh successfully detected repeated failed SSH login attempts
+- Alerts were generated identifying brute-force behavior
+- Initial automated response (IP blocking) did not activate
+- After configuration changes, Wazuh successfully blocked the attacking IP
 
-### Issue Identified:
-- Default configuration detected the threat but did not enforce a firewall block
+These results demonstrate that Wazuh provides strong detection capabilities out-of-the-box, but response mechanisms require proper configuration.
 
-### Resolution:
-- A rule/configuration adjustment was required to enable active response
-- After updating the configuration, Wazuh successfully blocked the attacking IP
+## Conclusion
+This project highlights the effectiveness of Wazuh as an open-source incident response tool. It demonstrates that brute-force attacks generate clear, detectable patterns in system logs and that centralized monitoring significantly improves detection capabilities.
 
-This step highlights that detection alone is not sufficient—**proper configuration of response mechanisms is critical**.
+A key insight from this lab is the distinction between detection and response. While Wazuh detected the attack without modification, enabling automated response required additional configuration. This reinforces the importance of tuning security tools to ensure full operational effectiveness.
 
-## Key Takeaways
-- Wazuh provides strong out-of-the-box detection capabilities
-- Brute-force attacks produce clear and detectable log patterns
-- Active response features require proper configuration to function
-- Lab architecture (separating manager and agent) impacts effectiveness
-- Open-source tools can be highly effective when properly tuned
+Future improvements could include expanding the lab to additional attack types, integrating more advanced response actions, and incorporating visualization or reporting features.
 
 ## Screenshots
-(Add:
-- VirtualBox 3-VM setup
-- Hydra attack in progress
-- Wazuh alerts dashboard
-- Evidence of blocked IP)
+(Add your screenshots here if required by the assignment)
 
 ## Author
 Cybersecurity Graduate Student  
