@@ -48,6 +48,13 @@ A three-machine architecture was used. The Wazuh Manager and Agent were deployed
 
 These results demonstrate that Wazuh provides strong detection capabilities out-of-the-box, but response mechanisms require proper configuration.
 
+Additional evidence of detection and response can be seen in system and Wazuh logs:
+
+- SSH authentication failures were recorded in the Ubuntu client logs and forwarded to the Wazuh manager
+- Wazuh generated alerts corresponding to failed login attempts and brute-force behavior
+- Active response events (firewall-drop) were logged, indicating attempts to block the attacker IP
+- After configuration adjustments, the attacker system lost connectivity to the target (connection timeout), confirming successful IP blocking
+
 ## Conclusion
 This project highlights the effectiveness of Wazuh as an open-source incident response tool. It demonstrates that brute-force attacks generate clear, detectable patterns in system logs and that centralized monitoring significantly improves detection capabilities.
 
