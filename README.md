@@ -74,6 +74,8 @@ This view shows SSH authentication failures recorded on the Ubuntu client. These
 ### Detection and Active Response (Wazuh Dashboard)
 ![Wazuh detection](wazuh-detection.png)
 
+This screenshot captures the full lab in action, including the Kali attacker VM, Ubuntu client, Ubuntu server, and VirtualBox environment used to support the simulation.
+
 The Wazuh dashboard displays detected brute-force activity, including failed login attempts and active response events. After configuration adjustments, the attacking IP is successfully blocked.
 
 ---
